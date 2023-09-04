@@ -150,7 +150,7 @@ public class JwtUtil {
     }
 
     /**
-     * Request Header에서 JWT 토큰을 가져오는 메서드
+     * Cookie에서 JWT 토큰을 가져오는 메서드
      * @param req HttpServletRequest 객체
      *            HttpServletRequest 객체의 getHeader() 메서드를 사용하여
      *            Request Header에서 JWT 토큰을 가져옴

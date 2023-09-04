@@ -34,11 +34,13 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
         this.jwtUtil = jwtUtil;
     }
+
     // ADMIN_TOKEN 일반 사용자인지 관리자인지
     /**
      * 관리자 암호
      */
     private final String ADMIN_TOKEN = "AAABnvxRVklrnYxKZ0aHgTBcXukeZygoC";
+
     /**
      * 회원가입 시 사용되는 ID 정규 표현식
      */
@@ -151,38 +153,38 @@ public class UserService {
      * @param res client에게 토큰을 전달하기 위한 response 객체
      * @return 로그인이 완료된 경우 로그인 완료 메시지 및 Status Code 200 반환
      */
-    public String login(LoginDto requestDto, HttpServletResponse res) {
-        String username = requestDto.getUsername();
-        String password = requestDto.getPassword();
-
-        /**
-         * 로그인 시 입력한 ID가 DB에 존재하는지 확인
-         */
-        User user = userRepository.findByUsername(username).orElse(null);
-
-        /**
-         * 존재하지 않는 ID인 경우
-         */
-        if (user == null) {
-            return "{\"message\": \"등록된 사용자가 없습니다\", \"statusCode\": 400}";
-        }
-
-        /**
-         * 입력한 비밀번호와 DB에 저장된 비밀번호가 일치하는지 확인
-         */
-        if (!passwordEncoder.matches(password,user.getPassword()))
-            return "{\"message\": \"PW가 일치하지 않습니다.\", \"statusCode\": 400}";
-
-        /**
-         * 토큰 생성 및 쿠키에 토큰 추가
-         */
-        String token = jwtUtil.createToken(user.getUsername(), user.getRole());
-        jwtUtil.addJwtToCookie(token, res);
-
-        /**
-         * 로그인 완료 메시지 및 Status Code 200 반환
-         */
-        return "{\"message\": \"로그인 성공\", \"statusCode\": 200}";
-    }
+//    public String login(LoginDto requestDto, HttpServletResponse res) {
+//        String username = requestDto.getUsername();
+//        String password = requestDto.getPassword();
+//
+//        /**
+//         * 로그인 시 입력한 ID가 DB에 존재하는지 확인
+//         */
+//        User user = userRepository.findByUsername(username).orElse(null);
+//
+//        /**
+//         * 존재하지 않는 ID인 경우
+//         */
+//        if (user == null) {
+//            return "{\"message\": \"등록된 사용자가 없습니다\", \"statusCode\": 400}";
+//        }
+//
+//        /**
+//         * 입력한 비밀번호와 DB에 저장된 비밀번호가 일치하는지 확인
+//         */
+//        if (!passwordEncoder.matches(password,user.getPassword()))
+//            return "{\"message\": \"PW가 일치하지 않습니다.\", \"statusCode\": 400}";
+//
+//        /**
+//         * 토큰 생성 및 쿠키에 토큰 추가
+//         */
+//        String token = jwtUtil.createToken(user.getUsername(), user.getRole());
+//        jwtUtil.addJwtToCookie(token, res);
+//
+//        /**
+//         * 로그인 완료 메시지 및 Status Code 200 반환
+//         */
+//        return "{\"message\": \"로그인 성공\", \"statusCode\": 200}";
+//    }
 
 }

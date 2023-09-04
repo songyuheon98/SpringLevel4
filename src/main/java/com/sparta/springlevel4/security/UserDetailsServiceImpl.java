@@ -2,12 +2,15 @@ package com.sparta.springlevel4.security;
 
 import com.sparta.springlevel4.entity.User;
 import com.sparta.springlevel4.repository.UserRepository;
-import com.sparta.springlevel4.security.UserDetailsImpl;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+/**
+ * Spring Security에서 사용자의 정보를 로드하는데 필요한 함수인
+ * loadUserByUsername() 함수를 구현한 클래스
+ */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
